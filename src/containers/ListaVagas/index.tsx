@@ -3,7 +3,9 @@ import FormVagas from '../../components/FormVagas'
 
 import Vaga from '../../components/Vaga'
 
-import styles from './ListaVagas.module.css'
+import { ListasVagas } from './styles'
+
+import EstiloGlobal, { Container } from '../../styles'
 
 type Vaga = {
   id: string
@@ -97,23 +99,26 @@ const ListaVagas = () => {
   )
 
   return (
-    <div>
-      <FormVagas aoPesquisar={(termo: string) => setFiltro(termo)} />
-      <ul className={styles.vagas}>
-        {vagasFiltradas.map((vag) => (
-          <Vaga
-            key={vag.id}
-            titulo={vag.titulo}
-            localizacao={vag.localizacao}
-            nivel={vag.nivel}
-            modalidade={vag.modalidade}
-            salarioMin={vag.salarioMin}
-            salarioMax={vag.salarioMax}
-            requisitos={vag.requisitos}
-          />
-        ))}
-      </ul>
-    </div>
+    <>
+      <EstiloGlobal />
+      <Container>
+        <FormVagas aoPesquisar={(termo: string) => setFiltro(termo)} />
+        <ListasVagas>
+          {vagasFiltradas.map((vag) => (
+            <Vaga
+              key={vag.id}
+              titulo={vag.titulo}
+              localizacao={vag.localizacao}
+              nivel={vag.nivel}
+              modalidade={vag.modalidade}
+              salarioMin={vag.salarioMin}
+              salarioMax={vag.salarioMax}
+              requisitos={vag.requisitos}
+            />
+          ))}
+        </ListasVagas>
+      </Container>
+    </>
   )
 }
 
